@@ -20,7 +20,8 @@ Con un caso de prueba de 5 lotes de productos y capacidad de 50 kg, la programac
 python knapsack_mochila_EF_dp.py
 ```
 
-Requiere Python 3 y la libreria matplotlib.
+Requiere Python 3 y la libreria matplotlib
+o tambien puedes copiar y pegar en Colaboratory
 ## Autores
 Johann Sifuentes Alvaro;
 Andres Garcia Valverde;
