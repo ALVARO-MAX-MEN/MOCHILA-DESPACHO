@@ -3,9 +3,7 @@ import random
 import itertools
 import matplotlib.pyplot as plt
 
-# =========================================================
-# 1. PROGRAMACION DINAMICA (Bottom-Up) - Algoritmo elegido
-# =========================================================
+#1. PROGRAMACION DINAMICA - Algoritmo elegido para el proyecto
 def programacion_dinamica(pesos, valores, capacidad):
     n = len(pesos)
     # tabla[i][w] = mejor valor usando los primeros i items con capacidad w
@@ -34,10 +32,7 @@ def programacion_dinamica(pesos, valores, capacidad):
 
     return tabla[n][capacidad], tuple(seleccion)
 
-
-# =========================================================
 # 2. FUERZA BRUTA - usada como referencia de validacion
-# =========================================================
 def fuerza_bruta(pesos, valores, capacidad):
     n = len(pesos)
     mejor_valor = 0
@@ -54,10 +49,7 @@ def fuerza_bruta(pesos, valores, capacidad):
 
     return mejor_valor, mejor_seleccion
 
-
-# =========================================================
 # 3. ALGORITMO VORAZ (Greedy) - por relacion valor/peso
-# =========================================================
 def voraz(pesos, valores, capacidad):
     n = len(pesos)
     indices = sorted(range(n), key=lambda i: valores[i] / pesos[i], reverse=True)
@@ -74,10 +66,7 @@ def voraz(pesos, valores, capacidad):
 
     return valor_total, tuple(sorted(seleccion))
 
-
-# =========================================================
 # CASO DE PRUEBA: Despacho logistico - capacidad = 50 kg
-# =========================================================
 if __name__ == "__main__":
     nombres = ["Lote A", "Lote B", "Lote C", "Lote D", "Lote E"]
     pesos =   [10, 20, 30, 25, 8]
@@ -101,9 +90,7 @@ if __name__ == "__main__":
     print(f"Programacion dinamica-> valor = {v_dp:3d} | seleccion = {[nombres[i] for i in s_dp]}")
     print(f"\n% del optimo alcanzado por el voraz: {v_vz / v_fb * 100:.1f}%")
 
-    # =====================================================
-    # ANALISIS EMPIRICO: n pequeno (fuerza bruta viable)
-    # =====================================================
+    # ANALISIS EMPIRICO: n pequeno 
     print("\n" + "=" * 70)
     print(" ANALISIS EMPIRICO DE TIEMPOS DE EJECUCION")
     print("=" * 70)
@@ -138,9 +125,7 @@ if __name__ == "__main__":
         resultados_pequenos.append((n, t_fb, t_vz, t_dp))
         print(f"{n:<6}{t_fb:<20.6f}{t_vz:<15.6f}{t_dp:<20.6f}")
 
-    # =====================================================
-    # ANALISIS EMPIRICO: n grande (fuerza bruta inviable)
-    # =====================================================
+    # ANALISIS EMPIRICO: N grande (fuerza bruta inviable)
     n_grandes = [100, 500, 1000, 5000]
     resultados_grandes = []  # (n, t_vz, t_dp, pct_optimo)
     CAPACIDAD_FIJA = 3000  # capacidad fija para no disparar la memoria O(n*W) con n grande
@@ -168,9 +153,7 @@ if __name__ == "__main__":
     v0, s0 = programacion_dinamica(pesos, valores, 0)
     print(f"\nPrueba caso limite (capacidad = 0) -> valor = {v0}, seleccion = {s0}")
 
-    # =====================================================
     # FIGURA 1: Comparacion empirica de tiempos de ejecucion
-    # =====================================================
     fig, axes = plt.subplots(1, 2, figsize=(11, 4.2))
     fig.suptitle("Figura 1. Comparacion empirica de tiempos de ejecucion")
 
